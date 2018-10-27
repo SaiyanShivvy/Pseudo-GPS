@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MVCPseudoGPS
 {
-    public partial class Form1 : Form
+    public partial class ViewForm2 : Form
     {
-        public Form1()
+        public ViewForm2()
         {
             InitializeComponent();
         }
