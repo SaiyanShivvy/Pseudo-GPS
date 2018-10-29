@@ -59,13 +59,13 @@ namespace MVCPseudoGPS
             set;
         }
 
-        // virtual method
-        public virtual bool HitTest(Point p)
-        {
-            Point pt = new Point(xpos, ypos);
-            Size size = new Size(100, 100);
-            //default behaviour
-            return new Rectangle(pt, size).Contains(p);
-        }
+        //// virtual method
+        //public virtual bool HitTest(Point p)
+        //{
+        //    Point pt = new Point(xpos, ypos);
+        //    Size size = new Size(100, 100);
+        //    //default behaviour
+        //    return new Rectangle(pt, size).Contains(p);
+        //}
     }
 }

@@ -14,13 +14,56 @@ namespace MVCPseudoGPS
         {
         }
 
-        public override int X_pos { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public override int Y_pos { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public override string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        // override method to display shape as text
+        public override string ToString()
+        {
+            return this.buildingName + ": " + this.Position();
+        }
 
+        // override method to display shape as graphics
         public override void Display(Graphics g)
         {
-            throw new NotImplementedException();
         }
+
+        public override int X_pos //non abstract property
+        {
+            get
+            {
+                return xpos;
+            }
+            set
+            {
+                xpos = value;
+            }
+        }
+
+        public override int Y_pos //non abstract property
+        {
+            get
+            {
+                return ypos;
+            }
+            set
+            {
+                ypos = value;
+            }
+        }
+
+        public override string Name
+        {
+            get
+            {
+                return buildingName;
+            }
+            set
+            {
+                buildingName = value;
+            }
+        }
+
+        //public override bool HitTest(Point p)
+        //{
+        //    //
+        //}
     }
 }
