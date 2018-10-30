@@ -49,10 +49,23 @@ namespace MVCPseudoGPS
                 name = txtName.Text;
                 if (rbShop.Checked)
                 {
-                    double rating = Convert.ToDouble(txtValue.Text);
-                    Console.WriteLine(rating);
-                    aBuilding = new Shop("shop", X, Y, aColor, rating);
+                    aBuilding = new Shop(name, X, Y, aColor, 4.5);
                     myModel.AddBuilding(aBuilding);
+                }
+                else if (rbMall.Checked)
+                {
+                    aBuilding = new Mall(name, X, Y, aColor, 69);
+                    myModel.AddBuilding(aBuilding);
+                }
+                else if (rbTrainStation.Checked)
+                {
+                    aBuilding = new TrainStation(name, X, Y, aColor, "Test Line");
+                    myModel.AddBuilding(aBuilding);
+                }
+                else
+                {
+                    MessageBox.Show("Please Select a Building Type", "No Building Type Selected!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -66,6 +79,8 @@ namespace MVCPseudoGPS
         {
             // clear drawOn panel
             clearPanel();
+            // clear listbox
+            lstBuildings.Items.Clear();
             // create arrayList from model and convert to array of shapes
             ArrayList theBuildingList = myModel.BuildingList;
             Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
@@ -102,17 +117,31 @@ namespace MVCPseudoGPS
 
         private void rbShop_CheckedChanged(object sender, EventArgs e)
         {
-            lblCusVal.Text = "Rating";
+            lblCusVal.Text = "Rating:";
         }
 
         private void rbMall_CheckedChanged(object sender, EventArgs e)
         {
-            lblCusVal.Text = "Stores";
+            lblCusVal.Text = "Capacity:";
         }
 
         private void rbTrainStation_CheckedChanged(object sender, EventArgs e)
         {
-            lblCusVal.Text = "Line";
+            lblCusVal.Text = "Line:";
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtX.Text = "";
+            txtY.Text = "";
+            txtName.Text = "";
+            txtValue.Text = "";
+            if (rbMall.Checked || rbShop.Checked || rbTrainStation.Checked)
+            {
+                rbTrainStation.Checked = false;
+                rbMall.Checked = false;
+                rbShop.Checked = false;
+            }
         }
 
         //// set the runtime position of update panel

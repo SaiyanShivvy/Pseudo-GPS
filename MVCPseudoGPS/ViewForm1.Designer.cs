@@ -218,6 +218,7 @@
             this.btnClear.TabIndex = 32;
             this.btnClear.Text = "Clear Input";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // txtName
             // 
