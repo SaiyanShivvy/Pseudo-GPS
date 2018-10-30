@@ -7,25 +7,25 @@ using System.Threading.Tasks;
 
 namespace MVCPseudoGPS
 {
-    internal class BuildingController
+    public class BuildingsController
     {
         private ArrayList ViewList;
 
         // constructor
-        public BuildingController()
+        public BuildingsController()
         {
             ViewList = new ArrayList();
         }
 
-        public void AddView(IView view)
+        public void AddView(IBuildingView aView)
         {
-            ViewList.Add(view);
+            ViewList.Add(aView);
         }
 
         public void UpdateViews()
         {
-            IView[] tViews = (IView[])ViewList.ToArray(typeof(IView));
-            foreach (IView v in tViews)
+            IBuildingView[] theViews = (IBuildingView[])ViewList.ToArray(typeof(IBuildingView));
+            foreach (IBuildingView v in theViews)
             {
                 v.RefreshView();
             }

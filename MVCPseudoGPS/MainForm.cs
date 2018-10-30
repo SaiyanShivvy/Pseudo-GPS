@@ -12,8 +12,8 @@ namespace MVCPseudoGPS
 {
     public partial class MainForm : Form
     {
-        private BuildingController buildingController;
-        private BuildingModel buildingModel;
+        private BuildingsController theController;
+        private BuildingsModel theModel;
         private ViewForm1 viewForm1;
 
         public MainForm()
@@ -31,14 +31,25 @@ namespace MVCPseudoGPS
         /// </summary>
         private void viewSetup()
         {
-            // make the controller
-            buildingController = new BuildingController();
-            // make the model
-            buildingModel = new BuildingModel(buildingController);
+            // make controller
+            theController = new BuildingsController();
+            // make model
+            theModel = new BuildingsModel(theController);
             // make views
             viewForm1 = new ViewForm1();
+            //myViewForm2 = new ViewForm2();
+            //myViewForm3 = new ViewForm3();
+            viewForm1.MyModel = theModel;
+            //myViewForm2.MyModel = theModel;
+            //myViewForm3.MyModel = theModel;
 
-            buildingController.AddView(viewForm1);
+            theController.AddView(viewForm1);
+            //theController.AddView(myViewForm2);
+            //theController.AddView(myViewForm3);
+
+            //show views
+            //myViewForm3.Show();
+            //myViewForm2.Show();
             viewForm1.Show();
         }
     }

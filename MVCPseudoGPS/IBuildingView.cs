@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MVCPseudoGPS
 {
-    public interface IView
+    public interface IBuildingView
     {
         void RefreshView();
     }

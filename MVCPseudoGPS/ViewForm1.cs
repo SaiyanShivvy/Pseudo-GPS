@@ -11,28 +11,20 @@ using System.Windows.Forms;
 
 namespace MVCPseudoGPS
 {
-    public partial class ViewForm1 : Form, IView
+    public partial class ViewForm1 : Form, IBuildingView
     {
-        private BuildingModel bM;
+        private BuildingsModel myModel;
+
         private bool dragging;
-        private BuildingBase selBuilding;
-        private BuildingBase editBuilding;
+        private Base topBuilding; //  variable for selected building
+        private Base editBuilding; // variable for building to edit
 
-        // var's for max values
-        private int max_X = 425;
-
-        private int max_Y = 325;
-
-        //
-        private Point lastPosition = new Point(0, 0);
-
-        private Point currentPosition = new Point(0, 0);
-
-        internal BuildingModel BModel
+        // set method for myModel
+        public BuildingsModel MyModel
         {
             set
             {
-                bM = value;
+                myModel = value;
             }
         }
 
@@ -43,33 +35,91 @@ namespace MVCPseudoGPS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            // required var's
+            int X, Y;
+            string name;
+            Color aColor;
+            Base aBuilding;
+            aColor = Color.Black;
+
             try
             {
-                BuildingBase abuilding;
-
-                int X = Convert.ToInt32(txtX.Text);
-                int Y = Convert.ToInt32(txtY.Text);
-
-                abuilding = new Shop("Test", X, Y);
-                bM.AddBuilding(abuilding);
+                X = Convert.ToInt32(txtX.Text);
+                Y = Convert.ToInt32(txtY.Text);
+                name = txtName.Text;
+                if (rbShop.Checked)
+                {
+                    double rating = Convert.ToDouble(txtValue.Text);
+                    Console.WriteLine(rating);
+                    aBuilding = new Shop("shop", X, Y, aColor, rating);
+                    myModel.AddBuilding(aBuilding);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + "\r\n" + "\r\n" + ex.ToString(),
-                    "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Error: ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         public void RefreshView()
         {
-            lstBuildings.Items.Clear();
-            ArrayList theBuildingList = bM.BuildingList;
-            BuildingBase[] theBuildings = (BuildingBase[])theBuildingList.ToArray(typeof(BuildingBase));
-            foreach (BuildingBase b in theBuildings)
+            // clear drawOn panel
+            clearPanel();
+            // create arrayList from model and convert to array of shapes
+            ArrayList theBuildingList = myModel.BuildingList;
+            Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+            Graphics g = this.pnlDraw.CreateGraphics();
+            // draw all shapes in array
+            foreach (Base b in theBuildings)
             {
+                b.Display(g);
                 lstBuildings.Items.Add(b);
             }
         }
+
+        /// <summary>method: clearPanel
+        /// clear all shapes from display on panel
+        /// </summary>
+        private void clearPanel()
+        {
+            pnlDraw.CreateGraphics().Clear(pnlDraw.BackColor);
+        }
+
+        /// <summary>method: reDisplay
+        /// redraws all the shapes in the model
+        /// </summary>
+        public void reDisplay()
+        {
+            ArrayList theBuildingList = myModel.BuildingList;
+            Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+            Graphics g = this.pnlDraw.CreateGraphics();
+            foreach (Base b in theBuildings)
+            {
+                b.Display(g);
+            }
+        }
+
+        private void rbShop_CheckedChanged(object sender, EventArgs e)
+        {
+            lblCusVal.Text = "Rating";
+        }
+
+        private void rbMall_CheckedChanged(object sender, EventArgs e)
+        {
+            lblCusVal.Text = "Stores";
+        }
+
+        private void rbTrainStation_CheckedChanged(object sender, EventArgs e)
+        {
+            lblCusVal.Text = "Line";
+        }
+
+        //// set the runtime position of update panel
+        //private void ViewForm1_Load(object sender, System.EventArgs e)
+        //{
+        //    pnlUpdate.Top = rbCircle.Top;
+        //    pnlUpdate.Left = rbCircle.Left;
+        //}
     }
 }

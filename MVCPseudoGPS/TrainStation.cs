@@ -7,34 +7,76 @@ using System.Threading.Tasks;
 
 namespace MVCPseudoGPS
 {
-    public class TrainStation : BuildingBase
+    internal class TrainStation : Base
     {
-        public TrainStation(string name, int x, int y) : base(name, x, y)
+        public TrainStation(string building, int x_at, int y_at, Color bkColor, string line) : base(building, x_at, y_at, bkColor)
         {
         }
 
-        public override int X_pos { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public override int Y_pos { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public override string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private string line;
 
-        public override void Display(Graphics g)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Equals(object obj)
-        {
-            return base.Equals(obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
+        // override method to display shape as text
         public override string ToString()
         {
-            return base.ToString();
+            return "Train Station: " + this.buildingName + ", " + this.line + ", " + this.Position();
+        }
+
+        // override method to display shape as graphics
+        public override void Display(Graphics g)
+        {
+            if (g != null)
+            {
+                Brush br = new SolidBrush(bColor);
+                g.FillRectangle(br, x, y, 10, 10);
+            }
+        }
+
+        public override int x_pos //non abstract property
+        {
+            get
+            {
+                return x;
+            }
+            set
+            {
+                x = value;
+            }
+        }
+
+        public override int y_pos //non abstract property
+        {
+            get
+            {
+                return y;
+            }
+            set
+            {
+                y = value;
+            }
+        }
+
+        public override Color color //non abstract property
+        {
+            get
+            {
+                return bColor;
+            }
+            set
+            {
+                bColor = value;
+            }
+        }
+
+        public override string name
+        {
+            get
+            {
+                return buildingName;
+            }
+            set
+            {
+                buildingName = value;
+            }
         }
     }
 }
