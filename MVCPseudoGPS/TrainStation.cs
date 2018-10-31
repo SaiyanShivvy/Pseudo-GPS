@@ -7,10 +7,28 @@ using System.Threading.Tasks;
 
 namespace MVCPseudoGPS
 {
+    /// <summary>
+    /// Date: 1/11/18
+    /// Author: Shivneel Achari
+    /// Note: The Section above applies for all the following comments on this class
+    /// implements the a subclass of the base (super) class
+    /// </summary>
     internal class TrainStation : Base
     {
+        /// <summary>
+        /// unique behavoir
+        /// </summary>
         public string Line { get; set; }
 
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="x_at"></param>
+        /// <param name="y_at"></param>
+        /// <param name="type"></param>
+        /// <param name="bkColor"></param>
+        /// <param name="line"></param>
         public TrainStation(string name, int x_at, int y_at, string type, Color bkColor, string line) : base(name, x_at, y_at, type, bkColor)
         {
             Line = line;
@@ -68,7 +86,7 @@ namespace MVCPseudoGPS
             }
         }
 
-        public override string Name
+        public override string Name //non abstract property
         {
             get
             {
@@ -80,7 +98,7 @@ namespace MVCPseudoGPS
             }
         }
 
-        public override string Type
+        public override string Type //non abstract property
         {
             get
             {

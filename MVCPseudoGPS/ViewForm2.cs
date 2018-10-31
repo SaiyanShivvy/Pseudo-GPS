@@ -12,6 +12,12 @@ using System.Windows.Forms;
 
 namespace MVCPseudoGPS
 {
+    /// <summary>
+    /// Date: 1/11/18
+    /// Author: Shivneel Achari
+    /// Note: The Section above applies for all the following comments on this class
+    /// defines viewform 3
+    /// </summary>
     public partial class ViewForm2 : Form, IBuildingView
     {
         private BuildingsModel myModel;
@@ -40,6 +46,11 @@ namespace MVCPseudoGPS
             InitializeComponent();
         }
 
+        /// <summary>
+        /// define what happens on mouse down while on panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pnlDraw_MouseDown(object sender, MouseEventArgs e)
         {
             if (selectBuilding != null)
@@ -53,6 +64,11 @@ namespace MVCPseudoGPS
             }
         }
 
+        /// <summary>
+        /// method to move building displayed on the panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pnlDraw_MouseMove(object sender, MouseEventArgs e)
         {
             // set last position to current position
@@ -119,6 +135,11 @@ namespace MVCPseudoGPS
             }
         }
 
+        /// <summary>
+        /// method to define what happens after move is complete
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pnlDraw_MouseUp(object sender, MouseEventArgs e)
         {
             edit();
@@ -137,6 +158,9 @@ namespace MVCPseudoGPS
             myModel.UpdateViews();
         }
 
+        /// <summary>
+        /// method to get the selected building
+        /// </summary>
         private void edit()
         {
             if (selectBuilding != null)
@@ -178,6 +202,11 @@ namespace MVCPseudoGPS
             }
         }
 
+        /// <summary>
+        /// updates the selected building with new data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             int nX, nY;
@@ -276,6 +305,11 @@ namespace MVCPseudoGPS
             myModel.UpdateViews();
         }
 
+        /// <summary>
+        /// deletes the selected building
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (editBuilding != null)
@@ -327,6 +361,11 @@ namespace MVCPseudoGPS
             }
         }
 
+        /// <summary>
+        /// Same as ViewForm 1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ctxSave_Click(object sender, EventArgs e)
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -345,6 +384,11 @@ namespace MVCPseudoGPS
             }
         }
 
+        /// <summary>
+        /// Same as ViewForm 1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ctxLoad_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -462,6 +506,9 @@ namespace MVCPseudoGPS
                 e.Handled = true;
         }
 
+        /// <summary>
+        /// refreshs the view and redraws all building to reflect any changes.
+        /// </summary>
         public void RefreshView()
         {
             // clear panel

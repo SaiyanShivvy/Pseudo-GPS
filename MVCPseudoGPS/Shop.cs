@@ -9,8 +9,20 @@ namespace MVCPseudoGPS
 {
     internal class Shop : Base
     {
+        /// <summary>
+        /// defines unique behaviour
+        /// </summary>
         public double Rating { get; set; }
 
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="x_at"></param>
+        /// <param name="y_at"></param>
+        /// <param name="type"></param>
+        /// <param name="bkColor"></param>
+        /// <param name="rating"></param>
         public Shop(string name, int x_at, int y_at, string type, Color bkColor, double rating) : base(name, x_at, y_at, type, bkColor)
         {
             Rating = rating;
@@ -68,7 +80,7 @@ namespace MVCPseudoGPS
             }
         }
 
-        public override string Name
+        public override string Name // non abstract property
         {
             get
             {
@@ -80,7 +92,7 @@ namespace MVCPseudoGPS
             }
         }
 
-        public override string Type
+        public override string Type // non abstract property
         {
             get
             {

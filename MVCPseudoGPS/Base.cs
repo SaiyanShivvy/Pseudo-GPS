@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace MVCPseudoGPS
 {
+    /// <summary>
+    /// Date: 1/11/18
+    /// Author: Shivneel Achari
+    /// Note: The Section above applies for all the following comments on this class
+    /// Defines the Superclasses attributes and methods
+    /// </summary>
     public abstract class Base
     {
         protected string buildingName;

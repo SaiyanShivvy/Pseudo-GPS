@@ -12,9 +12,19 @@ using System.Windows.Forms;
 
 namespace MVCPseudoGPS
 {
+    /// <summary>
+    /// Date: 1/11/18
+    /// Author: Shivneel Achari
+    /// Note: The Section above applies for all the following comments on this class
+    /// ViewForm 1 Class
+    /// </summary>
     public partial class ViewForm1 : Form, IBuildingView
     {
+        /// <summary>
+        /// declares the model and sets some global variables
+        /// </summary>
         private BuildingsModel myModel;
+
         private int max_x = 520;
         private int max_y = 420;
 
@@ -32,8 +42,12 @@ namespace MVCPseudoGPS
             InitializeComponent();
         }
 
-        // Add Input Validation
-
+        /// <summary>
+        /// This method is exected with the btnAdd is clicked.
+        /// It creates an Building based on the selected type and adds it the Model's arraylist and display it in the listbox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             int X, Y;
@@ -140,6 +154,12 @@ namespace MVCPseudoGPS
             }
         }
 
+        /// <summary>
+        /// This method is executed when btnUpdate is clicked
+        /// this method gets the selected listbox item and save edits made to it then updates views to reflect changes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (lstBuildings.SelectedItem != null)
@@ -244,6 +264,12 @@ namespace MVCPseudoGPS
             myModel.UpdateViews();
         }
 
+        /// <summary>
+        /// this method is performed when btnDelete is clicked.
+        /// this method with get the selected listbox and delete it after the user has given permission.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (lstBuildings.SelectedItem != null)
@@ -266,6 +292,11 @@ namespace MVCPseudoGPS
             myModel.UpdateViews();
         }
 
+        /// <summary>
+        /// updates lbl based on which radio button is checked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbShop_CheckedChanged(object sender, EventArgs e)
         {
             lblCusVal.Text = "Rating:";
@@ -281,6 +312,12 @@ namespace MVCPseudoGPS
             lblCusVal.Text = "Line:";
         }
 
+        /// <summary>
+        /// changes values in controls to reflect selected item's current values.
+        /// Perparing selected item for editing.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstBuildings_SelectedIndexChanged(object sender, EventArgs e)
         {
             Base selItem = (MVCPseudoGPS.Base)lstBuildings.SelectedItem;
@@ -316,6 +353,11 @@ namespace MVCPseudoGPS
             }
         }
 
+        /// <summary>
+        /// Clears any entered value from textbox and resets it to default
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtX.Text = "";
@@ -330,6 +372,11 @@ namespace MVCPseudoGPS
             }
         }
 
+        /// <summary>
+        /// when the menu dropdown's save button is clicked it save the file to a .dat file.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ctxSave_Click(object sender, EventArgs e)
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -349,6 +396,11 @@ namespace MVCPseudoGPS
             }
         }
 
+        /// <summary>
+        /// when the load button is clicked it asks the user to save any data then continues to load the data from the selected file and addes them as objects to the model arraylist.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ctxLoad_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -428,6 +480,11 @@ namespace MVCPseudoGPS
             }
         }
 
+        /// <summary>
+        /// closes the form when button is clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ctxClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -458,6 +515,9 @@ namespace MVCPseudoGPS
                 e.Handled = true;
         }
 
+        /// <summary>
+        /// impletement of interface class to update the view with information from the model.
+        /// </summary>
         public void RefreshView()
         {
             // clear listbox

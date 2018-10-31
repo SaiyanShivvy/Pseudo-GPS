@@ -12,8 +12,15 @@ using System.Windows.Forms;
 
 namespace MVCPseudoGPS
 {
+    /// <summary>
+    /// Date: 1/11/18
+    /// Author: Shivneel Achari
+    /// Note: The Section above applies for all the following comments on this class
+    /// defines view form 3
+    /// </summary>
     public partial class ViewForm3 : Form, IBuildingView
     {
+        // declare the model
         private BuildingsModel myModel;
 
         // set method for myModel
@@ -38,6 +45,9 @@ namespace MVCPseudoGPS
             pnlDraw.CreateGraphics().Clear(pnlDraw.BackColor);
         }
 
+        /// <summary>
+        /// Displays builds with the same type as the selected value in the combobox.
+        /// </summary>
         public void DisplayType()
         {
             // clear panel
@@ -57,6 +67,11 @@ namespace MVCPseudoGPS
             }
         }
 
+        /// <summary>
+        /// same as FormView1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ctxSave_Click(object sender, EventArgs e)
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -75,6 +90,11 @@ namespace MVCPseudoGPS
             }
         }
 
+        /// <summary>
+        /// same as viewform1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ctxLoad_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -154,11 +174,19 @@ namespace MVCPseudoGPS
             }
         }
 
+        /// <summary>
+        /// closes the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ctxClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// updates and redraws view to reflect any changes.
+        /// </summary>
         public void RefreshView()
         {
             // clear panel
@@ -174,6 +202,11 @@ namespace MVCPseudoGPS
             }
         }
 
+        /// <summary>
+        /// helper method to run another method when the combobox is changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbSelectType_SelectedIndexChanged(object sender, EventArgs e)
         {
             DisplayType();

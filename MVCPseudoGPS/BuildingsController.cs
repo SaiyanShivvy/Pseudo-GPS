@@ -17,11 +17,18 @@ namespace MVCPseudoGPS
             ViewList = new ArrayList();
         }
 
+        /// <summary>
+        /// addes a view to the ViewList array
+        /// </summary>
+        /// <param name="aView"></param>
         public void AddView(IBuildingView aView)
         {
             ViewList.Add(aView);
         }
 
+        /// <summary>
+        /// updates all views that exist in theViews array
+        /// </summary>
         public void UpdateViews()
         {
             IBuildingView[] theViews = (IBuildingView[])ViewList.ToArray(typeof(IBuildingView));
