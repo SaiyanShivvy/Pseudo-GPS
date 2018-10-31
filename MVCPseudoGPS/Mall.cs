@@ -9,16 +9,17 @@ namespace MVCPseudoGPS
 {
     internal class Mall : Base
     {
+        public int Capacity { get; }
+
         public Mall(string building, int x_at, int y_at, Color bkColor, int capacity) : base(building, x_at, y_at, bkColor)
         {
+            Capacity = capacity;
         }
-
-        private int capacity;
 
         // override method to display shape as text
         public override string ToString()
         {
-            return "Mall: " + this.buildingName + ", " + this.capacity + ", " + this.Position();
+            return "Mall: " + this.buildingName + ", " + this.Capacity + ", " + this.Position();
         }
 
         // override method to display shape as graphics

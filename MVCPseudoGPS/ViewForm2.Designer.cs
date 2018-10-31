@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.gBControl = new System.Windows.Forms.GroupBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -45,16 +44,9 @@
             this.lblX = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.pnlDraw = new System.Windows.Forms.Panel();
             this.gBControl.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 12);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(262, 433);
-            this.listBox1.TabIndex = 0;
             // 
             // gBControl
             // 
@@ -71,7 +63,7 @@
             this.gBControl.Controls.Add(this.lblY);
             this.gBControl.Controls.Add(this.txtX);
             this.gBControl.Controls.Add(this.lblX);
-            this.gBControl.Location = new System.Drawing.Point(276, 12);
+            this.gBControl.Location = new System.Drawing.Point(540, 220);
             this.gBControl.Name = "gBControl";
             this.gBControl.Size = new System.Drawing.Size(248, 189);
             this.gBControl.TabIndex = 35;
@@ -195,7 +187,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(285, 415);
+            this.btnUpdate.Location = new System.Drawing.Point(632, 415);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 33;
@@ -204,22 +196,31 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(366, 415);
+            this.btnAdd.Location = new System.Drawing.Point(713, 415);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 32;
             this.btnAdd.Text = "Delete";
             this.btnAdd.UseVisualStyleBackColor = true;
             // 
+            // pnlDraw
+            // 
+            this.pnlDraw.BackColor = System.Drawing.Color.White;
+            this.pnlDraw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDraw.Location = new System.Drawing.Point(12, 12);
+            this.pnlDraw.Name = "pnlDraw";
+            this.pnlDraw.Size = new System.Drawing.Size(522, 426);
+            this.pnlDraw.TabIndex = 36;
+            // 
             // ViewForm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pnlDraw);
             this.Controls.Add(this.gBControl);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.listBox1);
             this.Name = "ViewForm2";
             this.Text = "ViewForm2";
             this.gBControl.ResumeLayout(false);
@@ -229,8 +230,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.GroupBox gBControl;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblName;
@@ -247,5 +246,6 @@
         private System.Windows.Forms.Label lblX;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Panel pnlDraw;
     }
 }

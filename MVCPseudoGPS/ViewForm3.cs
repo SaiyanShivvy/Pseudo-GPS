@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace MVCPseudoGPS
 {
-    public partial class ViewForm3 : Form
+    public partial class ViewForm3 : Form, IBuildingView
     {
         private BuildingsModel myModel;
 
@@ -30,6 +30,11 @@ namespace MVCPseudoGPS
         public ViewForm3()
         {
             InitializeComponent();
+        }
+
+        public void RefreshView()
+        {
+            throw new NotImplementedException();
         }
     }
 }

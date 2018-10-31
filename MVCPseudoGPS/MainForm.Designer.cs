@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.btnVF1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnVF2 = new System.Windows.Forms.Button();
+            this.btnVF3 = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnVF1
@@ -44,41 +44,44 @@
             this.btnVF1.UseVisualStyleBackColor = true;
             this.btnVF1.Click += new System.EventHandler(this.btnVF1_Click);
             // 
-            // button2
+            // btnVF2
             // 
-            this.button2.Location = new System.Drawing.Point(59, 64);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnVF2.Location = new System.Drawing.Point(59, 64);
+            this.btnVF2.Name = "btnVF2";
+            this.btnVF2.Size = new System.Drawing.Size(75, 23);
+            this.btnVF2.TabIndex = 1;
+            this.btnVF2.Text = "Form 2";
+            this.btnVF2.UseVisualStyleBackColor = true;
+            this.btnVF2.Click += new System.EventHandler(this.btnVF2_Click);
             // 
-            // button3
+            // btnVF3
             // 
-            this.button3.Location = new System.Drawing.Point(59, 93);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnVF3.Location = new System.Drawing.Point(59, 93);
+            this.btnVF3.Name = "btnVF3";
+            this.btnVF3.Size = new System.Drawing.Size(75, 23);
+            this.btnVF3.TabIndex = 2;
+            this.btnVF3.Text = "Form 3";
+            this.btnVF3.UseVisualStyleBackColor = true;
+            this.btnVF3.Click += new System.EventHandler(this.btnVF3_Click);
             // 
-            // button4
+            // btnClose
             // 
-            this.button4.Location = new System.Drawing.Point(59, 122);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnClose.Location = new System.Drawing.Point(59, 122);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 3;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(199, 201);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnVF3);
+            this.Controls.Add(this.btnVF2);
             this.Controls.Add(this.btnVF1);
             this.Name = "MainForm";
             this.Text = "MainForm";
@@ -89,8 +92,8 @@
         #endregion
 
         private System.Windows.Forms.Button btnVF1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnVF2;
+        private System.Windows.Forms.Button btnVF3;
+        private System.Windows.Forms.Button btnClose;
     }
 }

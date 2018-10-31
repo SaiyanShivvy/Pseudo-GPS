@@ -15,10 +15,6 @@ namespace MVCPseudoGPS
     {
         private BuildingsModel myModel;
 
-        private bool dragging;
-        private Base topBuilding; //  variable for selected building
-        private Base editBuilding; // variable for building to edit
-
         // set method for myModel
         public BuildingsModel MyModel
         {
@@ -75,44 +71,19 @@ namespace MVCPseudoGPS
             }
         }
 
-        public void RefreshView()
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
-            // clear drawOn panel
-            clearPanel();
-            // clear listbox
-            lstBuildings.Items.Clear();
-            // create arrayList from model and convert to array of shapes
-            ArrayList theBuildingList = myModel.BuildingList;
-            Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
-            Graphics g = this.pnlDraw.CreateGraphics();
-            // draw all shapes in array
-            foreach (Base b in theBuildings)
+            if (lstBuildings.SelectedItem != null)
             {
-                b.Display(g);
-                lstBuildings.Items.Add(b);
+            }
+            else
+            {
+                MessageBox.Show("Please chose a Building from the ListBox", "No Building Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        /// <summary>method: clearPanel
-        /// clear all shapes from display on panel
-        /// </summary>
-        private void clearPanel()
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            pnlDraw.CreateGraphics().Clear(pnlDraw.BackColor);
-        }
-
-        /// <summary>method: reDisplay
-        /// redraws all the shapes in the model
-        /// </summary>
-        public void reDisplay()
-        {
-            ArrayList theBuildingList = myModel.BuildingList;
-            Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
-            Graphics g = this.pnlDraw.CreateGraphics();
-            foreach (Base b in theBuildings)
-            {
-                b.Display(g);
-            }
         }
 
         private void rbShop_CheckedChanged(object sender, EventArgs e)
@@ -144,11 +115,18 @@ namespace MVCPseudoGPS
             }
         }
 
-        //// set the runtime position of update panel
-        //private void ViewForm1_Load(object sender, System.EventArgs e)
-        //{
-        //    pnlUpdate.Top = rbCircle.Top;
-        //    pnlUpdate.Left = rbCircle.Left;
-        //}
+        public void RefreshView()
+        {
+            // clear listbox
+            lstBuildings.Items.Clear();
+            // create arrayList from model and convert to array of shapes
+            ArrayList theBuildingList = myModel.BuildingList;
+            Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+            // draw all shapes in array
+            foreach (Base b in theBuildings)
+            {
+                lstBuildings.Items.Add(b);
+            }
+        }
     }
 }

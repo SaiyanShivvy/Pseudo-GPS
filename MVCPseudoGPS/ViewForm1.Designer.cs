@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.pnlDraw = new System.Windows.Forms.Panel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtX = new System.Windows.Forms.TextBox();
             this.lblX = new System.Windows.Forms.Label();
@@ -47,23 +46,14 @@
             this.rbMall = new System.Windows.Forms.RadioButton();
             this.lblType = new System.Windows.Forms.Label();
             this.rbShop = new System.Windows.Forms.RadioButton();
-            this.toolTipVF1 = new System.Windows.Forms.ToolTip(this.components);
             this.txtY = new System.Windows.Forms.TextBox();
+            this.toolTipVF1 = new System.Windows.Forms.ToolTip(this.components);
             this.gBControl.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnlDraw
-            // 
-            this.pnlDraw.BackColor = System.Drawing.Color.White;
-            this.pnlDraw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlDraw.Location = new System.Drawing.Point(12, 12);
-            this.pnlDraw.Name = "pnlDraw";
-            this.pnlDraw.Size = new System.Drawing.Size(560, 425);
-            this.pnlDraw.TabIndex = 22;
-            // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(589, 415);
+            this.btnAdd.Location = new System.Drawing.Point(290, 409);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 23;
@@ -100,28 +90,30 @@
             // lstBuildings
             // 
             this.lstBuildings.FormattingEnabled = true;
-            this.lstBuildings.Location = new System.Drawing.Point(578, 210);
+            this.lstBuildings.Location = new System.Drawing.Point(12, 12);
             this.lstBuildings.Name = "lstBuildings";
-            this.lstBuildings.Size = new System.Drawing.Size(248, 199);
+            this.lstBuildings.Size = new System.Drawing.Size(261, 420);
             this.lstBuildings.TabIndex = 28;
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(670, 415);
+            this.btnUpdate.Location = new System.Drawing.Point(371, 409);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 29;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(751, 415);
+            this.btnDelete.Location = new System.Drawing.Point(452, 409);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 30;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // gBControl
             // 
@@ -138,7 +130,7 @@
             this.gBControl.Controls.Add(this.lblY);
             this.gBControl.Controls.Add(this.txtX);
             this.gBControl.Controls.Add(this.lblX);
-            this.gBControl.Location = new System.Drawing.Point(578, 12);
+            this.gBControl.Location = new System.Drawing.Point(279, 12);
             this.gBControl.Name = "gBControl";
             this.gBControl.Size = new System.Drawing.Size(248, 189);
             this.gBControl.TabIndex = 31;
@@ -247,13 +239,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(833, 450);
+            this.ClientSize = new System.Drawing.Size(539, 450);
             this.Controls.Add(this.gBControl);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lstBuildings);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.pnlDraw);
             this.Name = "ViewForm1";
             this.Text = "ViewForm1";
             this.gBControl.ResumeLayout(false);
@@ -263,8 +254,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel pnlDraw;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txtX;
         private System.Windows.Forms.Label lblX;

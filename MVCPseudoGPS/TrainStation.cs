@@ -9,16 +9,17 @@ namespace MVCPseudoGPS
 {
     internal class TrainStation : Base
     {
+        public string Line { get; }
+
         public TrainStation(string building, int x_at, int y_at, Color bkColor, string line) : base(building, x_at, y_at, bkColor)
         {
+            Line = line;
         }
-
-        private string line;
 
         // override method to display shape as text
         public override string ToString()
         {
-            return "Train Station: " + this.buildingName + ", " + this.line + ", " + this.Position();
+            return "Train Station: " + this.buildingName + ", " + this.Line + ", " + this.Position();
         }
 
         // override method to display shape as graphics

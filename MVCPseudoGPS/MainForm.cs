@@ -23,10 +23,7 @@ namespace MVCPseudoGPS
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        private void btnVF1_Click(object sender, EventArgs e)
-        {
+            this.Text = "Menu";
             viewSetup();
         }
 
@@ -48,13 +45,28 @@ namespace MVCPseudoGPS
             viewForm3.MyModel = theModel;
 
             theController.AddView(viewForm1);
-            //theController.AddView(viewForm2);
-            //theController.AddView(viewForm3);
+            theController.AddView(viewForm2);
+            theController.AddView(viewForm3);
+        }
 
-            //show views
-            //viewForm3.Show();
-            //viewForm2.Show();
+        private void btnVF1_Click(object sender, EventArgs e)
+        {
             viewForm1.Show();
+        }
+
+        private void btnVF2_Click(object sender, EventArgs e)
+        {
+            viewForm2.Show();
+        }
+
+        private void btnVF3_Click(object sender, EventArgs e)
+        {
+            viewForm3.Show();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
