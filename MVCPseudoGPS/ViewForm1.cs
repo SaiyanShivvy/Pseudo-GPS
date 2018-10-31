@@ -290,6 +290,7 @@ namespace MVCPseudoGPS
                 foreach (Base b in theBuildings)
                 {
                     sb.Append(b.ToString());
+                    sb.Append("#");
                 }
                 string temp = sb.ToString();
                 StreamWriter sw = new StreamWriter(saveFileDialog.FileName);
