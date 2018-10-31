@@ -18,6 +18,11 @@ namespace MVCPseudoGPS
         private Base editBuilding;
         private bool dragging;
 
+        // variables for mouse position
+        private Point lastPosition = new Point(0, 0);
+
+        private Point currentPosition = new Point(0, 0);
+
         // set method for myModel
         public BuildingsModel MyModel
         {
@@ -30,48 +35,141 @@ namespace MVCPseudoGPS
         public ViewForm2()
         {
             InitializeComponent();
-            edit();
         }
 
-        private void edit()
+        private void pnlDraw_MouseDown(object sender, MouseEventArgs e)
         {
-            //if (selectBuilding != null)
-            //{
-            //    MessageBox.Show("Building is Selected", "Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (selectBuilding != null)
+            {
+                edit(true);
+                dragging = true;
+            }
+            edit(false);
+        }
 
-            //    editBuilding = selectBuilding;
+        private void pnlDraw_MouseMove(object sender, MouseEventArgs e)
+        {
+            // set last position to current position
+            lastPosition = currentPosition;
+            // set current position to mouse position
+            currentPosition = new Point(e.X, e.Y);
+            // calculate how far mouse has moved
+            int xMove = currentPosition.X - lastPosition.X;
+            int yMove = currentPosition.Y - lastPosition.Y;
 
-            //    txtName.Text = selectBuilding.Name;
-            //    txtX.Text = selectBuilding.X_pos.ToString();
-            //    txtY.Text = selectBuilding.Y_pos.ToString();
-            //    switch (selectBuilding.Type)
-            //    {
-            //        case "Shop":
-            //            rbShop.Checked = true;
-            //            rbMall.Checked = false;
-            //            rbTrainStation.Checked = false;
-            //            Shop sp = (MVCPseudoGPS.Shop)selectBuilding;
-            //            txtValue.Text = sp.Rating.ToString();
-            //            break;
+            if (!dragging) // mouse not down
+            {
+                // reset variables
+                selectBuilding = null;
+                bool needsDisplay = false;
 
-            //        case "Mall":
-            //            rbShop.Checked = false;
-            //            rbMall.Checked = true;
-            //            rbTrainStation.Checked = false;
-            //            Mall ml = (MVCPseudoGPS.Mall)selectBuilding;
-            //            txtValue.Text = ml.Capacity.ToString();
-            //            break;
+                // create arrayList of shaapes from myModel
+                ArrayList theBuildingList = myModel.BuildingList;
+                // create array of shapes from array list
+                Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+                // graphics object to draw shapes when required
+                Graphics g = this.pnlDraw.CreateGraphics();
 
-            //        case "Train Station":
-            //            rbShop.Checked = false;
-            //            rbMall.Checked = false;
-            //            rbTrainStation.Checked = true;
-            //            TrainStation ts = (MVCPseudoGPS.TrainStation)selectBuilding;
-            //            txtValue.Text = ts.Line;
-            //            break;
-            //    }
-            //}
-            //myModel.UpdateViews();
+                // loop through array checking if mouse is over shape
+                foreach (Base b in theBuildings)
+                {
+                    // check if mouse is over shape
+                    if (b.HitTest(new Point(e.X, e.Y)))
+                    {
+                        // if so make shape topShape
+                        selectBuilding = b;
+                    }
+
+                    if (b.Highlight == true)
+                    {
+                        // shape to be redrawn
+                        needsDisplay = true;
+                        // redraw shape
+                        b.Display(g);
+                        b.Highlight = false;
+                    }
+                }
+
+                if (selectBuilding != null) // if there is a building
+                {
+                    needsDisplay = true; // need to redisplay
+                    selectBuilding.Display(g); // redisplay topShape
+                    selectBuilding.Highlight = true;
+                }
+
+                if (needsDisplay)
+                {
+                    // redisplay model
+                    myModel.UpdateViews();
+                }
+            }
+            else // mouse is down
+            {
+                // reset position of selected shape by value of mouse move
+                selectBuilding.X_pos = selectBuilding.X_pos + xMove;
+                selectBuilding.Y_pos = selectBuilding.Y_pos + yMove;
+
+                myModel.UpdateViews();
+            }
+        }
+
+        private void pnlDraw_MouseUp(object sender, MouseEventArgs e)
+        {
+            edit(false);
+            dragging = false;
+            clearPanel();
+            // create arrayList of shapes from model and convert to array of shapes
+            ArrayList theBuildingList = myModel.BuildingList;
+            Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+            Graphics g = this.pnlDraw.CreateGraphics();
+            // check if shape selected and if so display
+            if (editBuilding != null)
+            {
+                theBuildings[0] = selectBuilding;
+                selectBuilding.Display(g);
+            }
+            myModel.UpdateViews();
+        }
+
+        private void edit(bool isEditing)
+        {
+            if (isEditing)
+            {
+                if (selectBuilding != null)
+                {
+                    editBuilding = selectBuilding;
+
+                    txtName.Text = selectBuilding.Name;
+                    txtX.Text = selectBuilding.X_pos.ToString();
+                    txtY.Text = selectBuilding.Y_pos.ToString();
+                    switch (selectBuilding.Type)
+                    {
+                        case "Shop":
+                            rbShop.Checked = true;
+                            rbMall.Checked = false;
+                            rbTrainStation.Checked = false;
+                            Shop sp = (MVCPseudoGPS.Shop)selectBuilding;
+                            txtValue.Text = sp.Rating.ToString();
+                            break;
+
+                        case "Mall":
+                            rbShop.Checked = false;
+                            rbMall.Checked = true;
+                            rbTrainStation.Checked = false;
+                            Mall ml = (MVCPseudoGPS.Mall)selectBuilding;
+                            txtValue.Text = ml.Capacity.ToString();
+                            break;
+
+                        case "Train Station":
+                            rbShop.Checked = false;
+                            rbMall.Checked = false;
+                            rbTrainStation.Checked = true;
+                            TrainStation ts = (MVCPseudoGPS.TrainStation)selectBuilding;
+                            txtValue.Text = ts.Line;
+                            break;
+                    }
+                }
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)

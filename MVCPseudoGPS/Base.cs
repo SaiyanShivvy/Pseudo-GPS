@@ -14,6 +14,7 @@ namespace MVCPseudoGPS
         protected int y;
         protected Color bColor;
         protected string bType;
+        private bool highlight; // added for hittest and highlight
 
         // constructor
         public Base(string name, int x_at, int y_at, string type, Color bkColor)
@@ -26,6 +27,18 @@ namespace MVCPseudoGPS
         }
 
         public abstract void Display(Graphics g);
+
+        public bool Highlight
+        {
+            get
+            {
+                return highlight;
+            }
+            set
+            {
+                highlight = value;
+            }
+        }
 
         public string Position()  //non abstract method
         {
@@ -60,6 +73,15 @@ namespace MVCPseudoGPS
         {
             get;
             set;
+        }
+
+        // virtual method
+        public virtual bool HitTest(Point p)
+        {
+            Point pt = new Point(x, y);
+            Size size = new Size(100, 100);
+            //default behaviour
+            return new Rectangle(pt, size).Contains(p);
         }
     }
 }

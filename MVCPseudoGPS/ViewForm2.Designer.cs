@@ -212,6 +212,9 @@
             this.pnlDraw.Name = "pnlDraw";
             this.pnlDraw.Size = new System.Drawing.Size(520, 420);
             this.pnlDraw.TabIndex = 36;
+            this.pnlDraw.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlDraw_MouseDown);
+            this.pnlDraw.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlDraw_MouseMove);
+            this.pnlDraw.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnlDraw_MouseUp);
             // 
             // ViewForm2
             // 
