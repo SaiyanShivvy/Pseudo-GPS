@@ -48,7 +48,15 @@
             this.rbShop = new System.Windows.Forms.RadioButton();
             this.txtY = new System.Windows.Forms.TextBox();
             this.toolTipVF1 = new System.Windows.Forms.ToolTip(this.components);
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.mainMenu = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gBControl.SuspendLayout();
+            this.mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -67,7 +75,7 @@
             this.txtX.Name = "txtX";
             this.txtX.Size = new System.Drawing.Size(69, 20);
             this.txtX.TabIndex = 24;
-            this.toolTipVF1.SetToolTip(this.txtX, "Maximum Value is 560.");
+            this.toolTipVF1.SetToolTip(this.txtX, "Maximum Value is 520.");
             this.txtX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_KeyPress);
             // 
             // lblX
@@ -78,6 +86,7 @@
             this.lblX.Size = new System.Drawing.Size(17, 13);
             this.lblX.TabIndex = 25;
             this.lblX.Text = "X:";
+            this.toolTipVF1.SetToolTip(this.lblX, "The X coordinate.");
             // 
             // lblY
             // 
@@ -87,13 +96,14 @@
             this.lblY.Size = new System.Drawing.Size(17, 13);
             this.lblY.TabIndex = 27;
             this.lblY.Text = "Y:";
+            this.toolTipVF1.SetToolTip(this.lblY, "The Y coordinate.");
             // 
             // lstBuildings
             // 
             this.lstBuildings.FormattingEnabled = true;
-            this.lstBuildings.Location = new System.Drawing.Point(12, 12);
+            this.lstBuildings.Location = new System.Drawing.Point(12, 25);
             this.lstBuildings.Name = "lstBuildings";
-            this.lstBuildings.Size = new System.Drawing.Size(261, 420);
+            this.lstBuildings.Size = new System.Drawing.Size(261, 407);
             this.lstBuildings.TabIndex = 28;
             this.lstBuildings.SelectedIndexChanged += new System.EventHandler(this.lstBuildings_SelectedIndexChanged);
             // 
@@ -132,7 +142,7 @@
             this.gBControl.Controls.Add(this.lblY);
             this.gBControl.Controls.Add(this.txtX);
             this.gBControl.Controls.Add(this.lblX);
-            this.gBControl.Location = new System.Drawing.Point(279, 12);
+            this.gBControl.Location = new System.Drawing.Point(279, 25);
             this.gBControl.Name = "gBControl";
             this.gBControl.Size = new System.Drawing.Size(248, 189);
             this.gBControl.TabIndex = 31;
@@ -145,6 +155,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(146, 20);
             this.txtName.TabIndex = 34;
+            this.toolTipVF1.SetToolTip(this.txtName, "The name of the building.");
             // 
             // lblName
             // 
@@ -162,6 +173,7 @@
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 32;
             this.btnClear.Text = "Clear Input";
+            this.toolTipVF1.SetToolTip(this.btnClear, "Clear\'s all fields.");
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
@@ -171,8 +183,7 @@
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(61, 20);
             this.txtValue.TabIndex = 33;
-            this.toolTipVF1.SetToolTip(this.txtValue, "This value is determined by the type of Building, Shop is double, Mall is int and" +
-        " Train Station is Line.");
+            this.toolTipVF1.SetToolTip(this.txtValue, "Rating is a Double, Capacity is a Int and Line is a String.");
             // 
             // lblCusVal
             // 
@@ -182,6 +193,8 @@
             this.lblCusVal.Size = new System.Drawing.Size(72, 13);
             this.lblCusVal.TabIndex = 32;
             this.lblCusVal.Text = "Custom Input:";
+            this.toolTipVF1.SetToolTip(this.lblCusVal, "This input required is determined by the type of Building, Shop is double, Mall i" +
+        "s int and Train Station is Line.");
             // 
             // rbTrainStation
             // 
@@ -192,6 +205,7 @@
             this.rbTrainStation.TabIndex = 31;
             this.rbTrainStation.TabStop = true;
             this.rbTrainStation.Text = "Train Station";
+            this.toolTipVF1.SetToolTip(this.rbTrainStation, "The type of building is a Train Station.");
             this.rbTrainStation.UseVisualStyleBackColor = true;
             this.rbTrainStation.CheckedChanged += new System.EventHandler(this.rbTrainStation_CheckedChanged);
             // 
@@ -204,6 +218,7 @@
             this.rbMall.TabIndex = 30;
             this.rbMall.TabStop = true;
             this.rbMall.Text = "Mall";
+            this.toolTipVF1.SetToolTip(this.rbMall, "The type of building is a Mall.");
             this.rbMall.UseVisualStyleBackColor = true;
             this.rbMall.CheckedChanged += new System.EventHandler(this.rbMall_CheckedChanged);
             // 
@@ -225,6 +240,7 @@
             this.rbShop.TabIndex = 28;
             this.rbShop.TabStop = true;
             this.rbShop.Text = "Shop";
+            this.toolTipVF1.SetToolTip(this.rbShop, "The type of building is a Shop.");
             this.rbShop.UseVisualStyleBackColor = true;
             this.rbShop.CheckedChanged += new System.EventHandler(this.rbShop_CheckedChanged);
             // 
@@ -235,8 +251,59 @@
             this.txtY.Name = "txtY";
             this.txtY.Size = new System.Drawing.Size(69, 20);
             this.txtY.TabIndex = 26;
-            this.toolTipVF1.SetToolTip(this.txtY, "Maximum Value is 425.");
+            this.toolTipVF1.SetToolTip(this.txtY, "Maximum Value is 420.");
             this.txtY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_KeyPress);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.DefaultExt = "dat";
+            this.openFileDialog.Filter = "\"Dat files (*.dat)|*.dat|All files (*.*)|*.*\"";
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.DefaultExt = "dat";
+            this.saveFileDialog.FileName = "Data";
+            this.saveFileDialog.Filter = "\"Dat files (*.dat)|*.dat|All files (*.*)|*.*\"";
+            // 
+            // mainMenu
+            // 
+            this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.mainMenu.Location = new System.Drawing.Point(0, 0);
+            this.mainMenu.Name = "mainMenu";
+            this.mainMenu.Size = new System.Drawing.Size(539, 24);
+            this.mainMenu.TabIndex = 32;
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem,
+            this.loadToolStripMenuItem,
+            this.closeToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.ctxSave_Click);
+            // 
+            // loadToolStripMenuItem
+            // 
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadToolStripMenuItem.Text = "Load";
+            this.loadToolStripMenuItem.Click += new System.EventHandler(this.ctxLoad_Click);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.ctxClose_Click);
             // 
             // ViewForm1
             // 
@@ -248,11 +315,16 @@
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lstBuildings);
             this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.mainMenu);
+            this.MainMenuStrip = this.mainMenu;
             this.Name = "ViewForm1";
             this.Text = "ViewForm1";
             this.gBControl.ResumeLayout(false);
             this.gBControl.PerformLayout();
+            this.mainMenu.ResumeLayout(false);
+            this.mainMenu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -276,5 +348,12 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.ToolTip toolTipVF1;
         private System.Windows.Forms.TextBox txtY;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.MenuStrip mainMenu;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
     }
 }

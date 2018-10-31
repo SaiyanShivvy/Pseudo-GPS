@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -277,6 +278,99 @@ namespace MVCPseudoGPS
                 rbMall.Checked = false;
                 rbShop.Checked = false;
             }
+        }
+
+        private void ctxSave_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                StringBuilder sb = new StringBuilder();
+                ArrayList theBuildingList = myModel.BuildingList;
+                Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+                foreach (Base b in theBuildings)
+                {
+                    sb.Append(b.ToString());
+                }
+                string temp = sb.ToString();
+                StreamWriter sw = new StreamWriter(saveFileDialog.FileName);
+                sw.Write(sb);
+                sw.Close();
+            }
+        }
+
+        private void ctxLoad_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string name, type, line;
+                int xL, yL, capacity;
+                double rating;
+
+                // Ask to Save First
+                // clear listbox
+                lstBuildings.Items.Clear();
+                // create arrayList from model and convert to array of shapes
+                ArrayList theBuildingList = myModel.BuildingList;
+                Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+                // draw all shapes in array
+                foreach (Base b in theBuildings)
+                {
+                    theBuildingList.Remove(b);
+                }
+
+                //load data
+                StreamReader sr = new StreamReader(openFileDialog.FileName);
+                string theObjects = sr.ReadToEnd();
+                sr.Close();
+                string[] theLines = theObjects.Split('#');
+                foreach (string sO in theLines)
+                {
+                    if (sO != "")
+                    {
+                        string[] building = sO.Split(',');
+                        type = building[0];
+                        name = building[1];
+                        building.Select(r => r.Replace("(", " ")).ToArray();
+                        building.Select(r => r.Replace(")", " ")).ToArray();
+                        //xL = Convert.ToInt32(building[3]);
+                        //yL = Convert.ToInt32(building[4]);
+
+                        string x = building[3];
+
+                        foreach (string a in building)
+                        {
+                            lstBuildings.Items.Add(a);
+                        }
+
+                        //switch (type)
+                        //{
+                        //    case "Shop":
+                        //        rating = Convert.ToDouble(building[2]);
+                        //        Shop sBuild = new Shop(name, xL, yL, type, Color.Black, rating);
+                        //        myModel.AddBuilding(sBuild);
+                        //        break;
+
+                        //    case "Mall":
+                        //        capacity = Convert.ToInt32(building[2]);
+                        //        Mall mBuild = new Mall(name, xL, yL, type, Color.Black, capacity);
+                        //        myModel.AddBuilding(mBuild);
+                        //        break;
+
+                        //    case "Train Station":
+                        //        line = building[2];
+                        //        TrainStation tsBuild = new TrainStation(name, xL, yL, type, Color.Black, line);
+                        //        myModel.AddBuilding(tsBuild);
+                        //        break;
+                        //}
+                    }
+                }
+                this.Invalidate();
+            }
+        }
+
+        private void ctxClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         /// <summary>method: CheckForNumeric

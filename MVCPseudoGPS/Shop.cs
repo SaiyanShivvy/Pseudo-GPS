@@ -19,7 +19,7 @@ namespace MVCPseudoGPS
         // override method to display shape as text
         public override string ToString()
         {
-            return this.bType + ": " + this.buildingName + ", " + this.Rating + ", " + this.Position();
+            return this.bType + ", " + this.buildingName + ", " + this.Rating + ", " + this.Position();
         }
 
         // override method to display shape as graphics

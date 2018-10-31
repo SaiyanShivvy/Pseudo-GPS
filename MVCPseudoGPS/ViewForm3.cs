@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,33 @@ namespace MVCPseudoGPS
                     b.Display(g);
                 }
             }
+        }
+
+        private void ctxSave_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                StringBuilder sb = new StringBuilder();
+                ArrayList theBuildingList = myModel.BuildingList;
+                Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+                foreach (Base b in theBuildings)
+                {
+                    sb.Append(b.ToString());
+                }
+                string temp = sb.ToString();
+                StreamWriter sw = new StreamWriter(saveFileDialog.FileName);
+                sw.Write(sb);
+                sw.Close();
+            }
+        }
+
+        private void ctxLoad_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void ctxClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         public void RefreshView()

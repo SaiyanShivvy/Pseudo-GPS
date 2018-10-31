@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace MVCPseudoGPS
         private Base selectBuilding;
         private Base editBuilding;
         private bool dragging;
+        private int max_x = 520;
+        private int max_y = 420;
 
         // variables for mouse position
         private Point lastPosition = new Point(0, 0);
@@ -43,6 +46,10 @@ namespace MVCPseudoGPS
             {
                 edit();
                 dragging = true;
+            }
+            else
+            {
+                MessageBox.Show("You have not selected a Building!", "Building Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -181,13 +188,27 @@ namespace MVCPseudoGPS
             {
                 double nRating = Convert.ToDouble(txtValue.Text);
                 Shop sB = (MVCPseudoGPS.Shop)editBuilding;
-                sB.Rating = nRating;
+                if (nRating > 10.0 || nRating < 0.0)
+                {
+                    MessageBox.Show("Rating must be between 0.0 - 10.0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    sB.Rating = nRating;
+                }
             }
             else if (selectedBuilding.Type == "Mall")
             {
                 int nCapacity = Convert.ToInt32(txtValue.Text);
                 Mall sB = (MVCPseudoGPS.Mall)editBuilding;
-                sB.Capacity = nCapacity;
+                if (nCapacity < 0)
+                {
+                    MessageBox.Show("Capacity cannot be less than 0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    sB.Capacity = nCapacity;
+                }
             }
             else if (selectedBuilding.Type == "Train Station")
             {
@@ -204,21 +225,40 @@ namespace MVCPseudoGPS
             nY = Convert.ToInt32(txtY.Text);
             nName = txtName.Text;
 
-            selectedBuilding.X_pos = nX;
-            selectedBuilding.Y_pos = nY;
-            selectedBuilding.Name = nName;
+            if (nX > max_x)
+            {
+                MessageBox.Show("X value cannot be greater than " + max_x, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (nX < 0)
+            {
+                MessageBox.Show("X value cannot be less than 0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (nY > max_y)
+            {
+                MessageBox.Show("Y value cannot be greater than " + max_y, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (nY < 0)
+            {
+                MessageBox.Show("Y value cannot be less than 0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                selectedBuilding.X_pos = nX;
+                selectedBuilding.Y_pos = nY;
+                selectedBuilding.Name = nName;
+            }
 
             myModel.UpdateViews();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (selectBuilding != null)
+            if (editBuilding != null)
             {
                 DialogResult dialogResult = MessageBox.Show("Do you want to delete selected shape?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    Base selectedBuilding = (MVCPseudoGPS.Base)selectBuilding;
+                    Base selectedBuilding = (MVCPseudoGPS.Base)editBuilding;
                     myModel.DeleteBuilding(selectedBuilding);
                 }
                 else
@@ -233,12 +273,93 @@ namespace MVCPseudoGPS
             myModel.UpdateViews();
         }
 
+        private void rbShop_CheckedChanged(object sender, EventArgs e)
+        {
+            lblCusVal.Text = "Rating:";
+        }
+
+        private void rbMall_CheckedChanged(object sender, EventArgs e)
+        {
+            lblCusVal.Text = "Capacity:";
+        }
+
+        private void rbTrainStation_CheckedChanged(object sender, EventArgs e)
+        {
+            lblCusVal.Text = "Line:";
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtX.Text = "";
+            txtY.Text = "";
+            txtName.Text = "";
+            txtValue.Text = "";
+            if (rbMall.Checked || rbShop.Checked || rbTrainStation.Checked)
+            {
+                rbTrainStation.Checked = false;
+                rbMall.Checked = false;
+                rbShop.Checked = false;
+            }
+        }
+
+        private void ctxSave_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                StringBuilder sb = new StringBuilder();
+                ArrayList theBuildingList = myModel.BuildingList;
+                Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+                foreach (Base b in theBuildings)
+                {
+                    sb.Append(b.ToString());
+                }
+                string temp = sb.ToString();
+                StreamWriter sw = new StreamWriter(saveFileDialog.FileName);
+                sw.Write(sb);
+                sw.Close();
+            }
+        }
+
+        private void ctxLoad_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void ctxClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         /// <summary>method: clearPanel
         /// clear all shapes from display on panel
         /// </summary>
         private void clearPanel()
         {
             pnlDraw.CreateGraphics().Clear(pnlDraw.BackColor);
+        }
+
+        /// <summary>method: CheckForNumeric
+        /// check for only numbers and backspace key
+        /// </summary>
+        /// <param name="ch"></param>
+        /// <returns></returns>
+        private static bool CheckForNumeric(char ch)
+        {
+            int keyInt = (int)ch;
+            if ((keyInt < 48 || keyInt > 57) && keyInt != 8)
+                return false;
+            else
+                return true;
+        }
+
+        /// <summary> method: txtXpos_KeyPress
+        /// allow only numbers and backspace key
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (CheckForNumeric(e.KeyChar) == false)
+                e.Handled = true;
         }
 
         public void RefreshView()
