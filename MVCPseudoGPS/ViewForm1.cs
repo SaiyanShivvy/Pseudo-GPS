@@ -31,6 +31,8 @@ namespace MVCPseudoGPS
             InitializeComponent();
         }
 
+        // Add Input Validation
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             int X, Y;
@@ -41,35 +43,68 @@ namespace MVCPseudoGPS
             {
                 X = Convert.ToInt32(txtX.Text);
                 Y = Convert.ToInt32(txtY.Text);
-                name = txtName.Text;
-                if (rbShop.Checked)
+                if (X > max_x)
                 {
-                    string type = "Shop";
-                    double rating = Convert.ToDouble(txtValue.Text);
-                    aColor = Color.Black;
-                    aBuilding = new Shop(name, X, Y, type, aColor, rating);
-                    myModel.AddBuilding(aBuilding);
+                    MessageBox.Show("X value cannot be greater than " + max_x, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else if (rbMall.Checked)
+                else if (X < 0)
                 {
-                    string type = "Mall";
-                    int capacity = Convert.ToInt32(txtValue.Text);
-                    aColor = Color.Red;
-                    aBuilding = new Mall(name, X, Y, type, aColor, capacity);
-                    myModel.AddBuilding(aBuilding);
+                    MessageBox.Show("X value cannot be less than 0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else if (rbTrainStation.Checked)
+                else if (Y > max_y)
                 {
-                    string type = "Train Station";
-                    string line = txtValue.Text;
-                    aColor = Color.Blue;
-                    aBuilding = new TrainStation(name, X, Y, type, aColor, line);
-                    myModel.AddBuilding(aBuilding);
+                    MessageBox.Show("Y value cannot be greater than " + max_y, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (Y < 0)
+                {
+                    MessageBox.Show("Y value cannot be less than 0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    MessageBox.Show("Please Select a Building Type", "No Building Type Selected!",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    name = txtName.Text;
+                    if (rbShop.Checked)
+                    {
+                        string type = "Shop";
+                        double rating = Convert.ToDouble(txtValue.Text);
+                        aColor = Color.Black;
+                        if (rating > 10.0 || rating < 0.0)
+                        {
+                            MessageBox.Show("Rating must be between 0.0 - 10.0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            aBuilding = new Shop(name, X, Y, type, aColor, rating);
+                            myModel.AddBuilding(aBuilding);
+                        }
+                    }
+                    else if (rbMall.Checked)
+                    {
+                        string type = "Mall";
+                        int capacity = Convert.ToInt32(txtValue.Text);
+                        aColor = Color.Red;
+                        if (capacity < 0)
+                        {
+                            MessageBox.Show("Capacity cannot be less than 0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            aBuilding = new Mall(name, X, Y, type, aColor, capacity);
+                            myModel.AddBuilding(aBuilding);
+                        }
+                    }
+                    else if (rbTrainStation.Checked)
+                    {
+                        string type = "Train Station";
+                        string line = txtValue.Text;
+                        aColor = Color.Blue;
+                        aBuilding = new TrainStation(name, X, Y, type, aColor, line);
+                        myModel.AddBuilding(aBuilding);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Select a Building Type", "No Building Type Selected!",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             catch (Exception ex)
@@ -91,13 +126,27 @@ namespace MVCPseudoGPS
                 {
                     double nRating = Convert.ToDouble(txtValue.Text);
                     Shop sB = (MVCPseudoGPS.Shop)lstBuildings.SelectedItem;
-                    sB.Rating = nRating;
+                    if (nRating > 10.0 || nRating < 0.0)
+                    {
+                        MessageBox.Show("Rating must be between 0.0 - 10.0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        sB.Rating = nRating;
+                    }
                 }
                 else if (selectedBuilding.Type == "Mall")
                 {
                     int nCapacity = Convert.ToInt32(txtValue.Text);
                     Mall sB = (MVCPseudoGPS.Mall)lstBuildings.SelectedItem;
-                    sB.Capacity = nCapacity;
+                    if (nCapacity < 0)
+                    {
+                        MessageBox.Show("Capacity cannot be less than 0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        sB.Capacity = nCapacity;
+                    }
                 }
                 else if (selectedBuilding.Type == "Train Station")
                 {
@@ -114,9 +163,28 @@ namespace MVCPseudoGPS
                 nY = Convert.ToInt32(txtY.Text);
                 nName = txtName.Text;
 
-                selectedBuilding.X_pos = nX;
-                selectedBuilding.Y_pos = nY;
-                selectedBuilding.Name = nName;
+                if (nX > max_x)
+                {
+                    MessageBox.Show("X value cannot be greater than " + max_x, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (nX < 0)
+                {
+                    MessageBox.Show("X value cannot be less than 0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (nY > max_y)
+                {
+                    MessageBox.Show("Y value cannot be greater than " + max_y, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (nY < 0)
+                {
+                    MessageBox.Show("Y value cannot be less than 0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    selectedBuilding.X_pos = nX;
+                    selectedBuilding.Y_pos = nY;
+                    selectedBuilding.Name = nName;
+                }
             }
             else
             {
@@ -129,12 +197,16 @@ namespace MVCPseudoGPS
         {
             if (lstBuildings.SelectedItem != null)
             {
-                Base selectedBuilding = (MVCPseudoGPS.Base)lstBuildings.SelectedItem;
-                myModel.DeleteBuilding(selectedBuilding);
-                //if (myModel.BuildingList.Count < 1)
-                //{
-                //    MessageBox.Show("Building's List is now Empty", "No Building's Left!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //}
+                DialogResult dialogResult = MessageBox.Show("Do you want to delete selected shape?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Base selectedBuilding = (MVCPseudoGPS.Base)lstBuildings.SelectedItem;
+                    myModel.DeleteBuilding(selectedBuilding);
+                }
+                else
+                {
+                    MessageBox.Show("No Changes have been made.", "Action Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {

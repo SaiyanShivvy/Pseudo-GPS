@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlDraw = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbSelectType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // pnlDraw
@@ -41,21 +41,26 @@
             this.pnlDraw.Size = new System.Drawing.Size(649, 426);
             this.pnlDraw.TabIndex = 23;
             // 
-            // comboBox1
+            // cbSelectType
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(667, 12);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 25;
-            this.comboBox1.Text = "Select Building Type";
+            this.cbSelectType.FormattingEnabled = true;
+            this.cbSelectType.Items.AddRange(new object[] {
+            "Train Station",
+            "Mall",
+            "Shop"});
+            this.cbSelectType.Location = new System.Drawing.Point(667, 12);
+            this.cbSelectType.Name = "cbSelectType";
+            this.cbSelectType.Size = new System.Drawing.Size(121, 21);
+            this.cbSelectType.TabIndex = 25;
+            this.cbSelectType.Text = "Select Building Type";
+            this.cbSelectType.SelectedIndexChanged += new System.EventHandler(this.cbSelectType_SelectedIndexChanged);
             // 
             // ViewForm3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbSelectType);
             this.Controls.Add(this.pnlDraw);
             this.Name = "ViewForm3";
             this.Text = "ViewForm3";
@@ -66,6 +71,6 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlDraw;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbSelectType;
     }
 }

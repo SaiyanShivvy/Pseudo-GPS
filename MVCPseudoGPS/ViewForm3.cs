@@ -15,10 +15,6 @@ namespace MVCPseudoGPS
     {
         private BuildingsModel myModel;
 
-        private bool dragging;
-        private Base topBuilding; //  variable for selected building
-        private Base editBuilding; // variable for building to edit
-
         // set method for myModel
         public BuildingsModel MyModel
         {
@@ -41,17 +37,22 @@ namespace MVCPseudoGPS
             pnlDraw.CreateGraphics().Clear(pnlDraw.BackColor);
         }
 
-        /// <summary>method: reDisplay
-        /// redraws all the shapes in the model
-        /// </summary>
-        public void reDisplay()
+        public void DisplayType()
         {
+            // clear panel
+            clearPanel();
+            // create arrayList from model and convert to array of shapes
             ArrayList theBuildingList = myModel.BuildingList;
             Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+            string displayType = cbSelectType.SelectedItem.ToString();
             Graphics g = this.pnlDraw.CreateGraphics();
+            // draw all shapes in array
             foreach (Base b in theBuildings)
             {
-                b.Display(g);
+                if (b.Type.Equals(displayType))
+                {
+                    b.Display(g);
+                }
             }
         }
 
@@ -70,19 +71,9 @@ namespace MVCPseudoGPS
             }
         }
 
-        public void DisplayType()
+        private void cbSelectType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // clear panel
-            clearPanel();
-            // create arrayList from model and convert to array of shapes
-            ArrayList theBuildingList = myModel.BuildingList;
-            Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
-            Graphics g = this.pnlDraw.CreateGraphics();
-            // draw all shapes in array
-            foreach (Base b in theBuildings)
-            {
-                b.Display(g);
-            }
+            DisplayType();
         }
     }
 }
