@@ -100,6 +100,7 @@
     <EmbeddedResource Include="ViewForm3.resx">
       <DependentUpon>ViewForm3.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="OverallClassDiagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

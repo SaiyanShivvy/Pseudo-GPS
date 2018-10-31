@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MVCPseudoGPS.Base">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABQEAAABCAAAgIAAAAQQAAAAAAEAAAQBggAAAAAA=</HashCode>
+      <FileName>Base.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCPseudoGPS.BuildingsController">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAIAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>BuildingsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCPseudoGPS.BuildingsModel">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAQEgAAEAAAAAAAAAAAQAAAAAAAAAAAgAA=</HashCode>
+      <FileName>BuildingsModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCPseudoGPS.MainForm">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAACAAAAAAEACAAAICAAAAQAAAAIAAUIAAAAA=</HashCode>
+      <FileName>MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCPseudoGPS.Mall">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAACAAAEAAAAAQQCAAAAAAAAAQAAgAAAAAA=</HashCode>
+      <FileName>Mall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCPseudoGPS.Program">
+    <Position X="6.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCPseudoGPS.Shop">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAACAAAEAAAAAQQAAAAAAAEAAQAAgAAAAAA=</HashCode>
+      <FileName>Shop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCPseudoGPS.TrainStation">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAACAAAEAAAAAQQAAAAAAAAAAQAAgAABAAA=</HashCode>
+      <FileName>TrainStation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCPseudoGPS.ViewForm1" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DQAMCAgAnCEYAAsRAACAwAACAAAIsCAAkAADBgBAgWY=</HashCode>
+      <FileName>ViewForm1.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MVCPseudoGPS.ViewForm2" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DQAMiAgAnCGIBAsZAACAwAADAAIIsCAAkAALBgAAAWQ=</HashCode>
+      <FileName>ViewForm2.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MVCPseudoGPS.ViewForm3" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DAAEAAgACCBIAAoACACAwBACAAAAkCAAEAAIAAAAAAA=</HashCode>
+      <FileName>ViewForm3.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MVCPseudoGPS.Properties.Resources">
+    <Position X="6.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCPseudoGPS.Properties.Settings">
+    <Position X="8.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="MVCPseudoGPS.IBuildingView">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>IBuildingView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
