@@ -195,7 +195,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(368, 415);
+            this.btnUpdate.Location = new System.Drawing.Point(285, 415);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 33;
@@ -204,11 +204,11 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(287, 415);
+            this.btnAdd.Location = new System.Drawing.Point(366, 415);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 32;
-            this.btnAdd.Text = "Add";
+            this.btnAdd.Text = "Delete";
             this.btnAdd.UseVisualStyleBackColor = true;
             // 
             // ViewForm2

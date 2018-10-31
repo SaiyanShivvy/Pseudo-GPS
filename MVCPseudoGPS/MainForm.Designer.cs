@@ -36,17 +36,17 @@
             // 
             // btnVF1
             // 
-            this.btnVF1.Location = new System.Drawing.Point(48, 36);
+            this.btnVF1.Location = new System.Drawing.Point(59, 35);
             this.btnVF1.Name = "btnVF1";
             this.btnVF1.Size = new System.Drawing.Size(75, 23);
             this.btnVF1.TabIndex = 0;
-            this.btnVF1.Text = "ViewForm 1";
+            this.btnVF1.Text = "Form 1";
             this.btnVF1.UseVisualStyleBackColor = true;
             this.btnVF1.Click += new System.EventHandler(this.btnVF1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(129, 36);
+            this.button2.Location = new System.Drawing.Point(59, 64);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -55,7 +55,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(210, 36);
+            this.button3.Location = new System.Drawing.Point(59, 93);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 2;
@@ -64,7 +64,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(291, 36);
+            this.button4.Location = new System.Drawing.Point(59, 122);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 3;
@@ -75,13 +75,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(415, 113);
+            this.ClientSize = new System.Drawing.Size(199, 201);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnVF1);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "MainForm";
             this.ResumeLayout(false);
 
         }
@@ -94,4 +94,3 @@
         private System.Windows.Forms.Button button4;
     }
 }
-

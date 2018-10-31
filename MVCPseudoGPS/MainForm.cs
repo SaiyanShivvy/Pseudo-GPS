@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,8 @@ namespace MVCPseudoGPS
         private BuildingsController theController;
         private BuildingsModel theModel;
         private ViewForm1 viewForm1;
+        private ViewForm2 viewForm2;
+        private ViewForm3 viewForm3;
 
         public MainForm()
         {
@@ -37,19 +41,19 @@ namespace MVCPseudoGPS
             theModel = new BuildingsModel(theController);
             // make views
             viewForm1 = new ViewForm1();
-            //myViewForm2 = new ViewForm2();
-            //myViewForm3 = new ViewForm3();
+            viewForm2 = new ViewForm2();
+            viewForm3 = new ViewForm3();
             viewForm1.MyModel = theModel;
-            //myViewForm2.MyModel = theModel;
-            //myViewForm3.MyModel = theModel;
+            viewForm2.MyModel = theModel;
+            viewForm3.MyModel = theModel;
 
             theController.AddView(viewForm1);
-            //theController.AddView(myViewForm2);
-            //theController.AddView(myViewForm3);
+            //theController.AddView(viewForm2);
+            //theController.AddView(viewForm3);
 
             //show views
-            //myViewForm3.Show();
-            //myViewForm2.Show();
+            //viewForm3.Show();
+            //viewForm2.Show();
             viewForm1.Show();
         }
     }

@@ -12,6 +12,21 @@ namespace MVCPseudoGPS
 {
     public partial class ViewForm3 : Form
     {
+        private BuildingsModel myModel;
+
+        private bool dragging;
+        private Base topBuilding; //  variable for selected building
+        private Base editBuilding; // variable for building to edit
+
+        // set method for myModel
+        public BuildingsModel MyModel
+        {
+            set
+            {
+                myModel = value;
+            }
+        }
+
         public ViewForm3()
         {
             InitializeComponent();

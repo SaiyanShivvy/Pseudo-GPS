@@ -47,18 +47,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base.cs" />
-    <Compile Include="Mall.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Shop.cs" />
-    <Compile Include="BuildingsController.cs" />
-    <Compile Include="BuildingsModel.cs" />
-    <Compile Include="IBuildingView.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mall.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Shop.cs" />
+    <Compile Include="BuildingsController.cs" />
+    <Compile Include="BuildingsModel.cs" />
+    <Compile Include="IBuildingView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainStation.cs" />
     <Compile Include="ViewForm1.cs">
