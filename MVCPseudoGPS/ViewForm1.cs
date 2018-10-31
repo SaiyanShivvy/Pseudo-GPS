@@ -306,12 +306,26 @@ namespace MVCPseudoGPS
                 int xL, yL, capacity;
                 double rating;
 
-                // Ask to Save First
-                // clear listbox
-                lstBuildings.Items.Clear();
                 // create arrayList from model and convert to array of shapes
                 ArrayList theBuildingList = myModel.BuildingList;
                 Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+
+                // Ask to Save First
+                if (theBuildingList.Count > 0)
+                {
+                    DialogResult res = MessageBox.Show("There are existing Buildings, Saving is reccomened otherwise data will be lost.", "Warning: Loss of Data", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    if (res == DialogResult.OK)
+                    {
+                        saveToolStripMenuItem.PerformClick();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Your Data was not saved.", "Data not Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                // clear listbox
+                lstBuildings.Items.Clear();
+
                 // draw all shapes in array
                 foreach (Base b in theBuildings)
                 {
@@ -330,38 +344,33 @@ namespace MVCPseudoGPS
                         string[] building = sO.Split(',');
                         type = building[0];
                         name = building[1];
-                        building.Select(r => r.Replace("(", " ")).ToArray();
-                        building.Select(r => r.Replace(")", " ")).ToArray();
-                        //xL = Convert.ToInt32(building[3]);
-                        //yL = Convert.ToInt32(building[4]);
+                        string px = building[3];
+                        string py = building[4];
+                        string x = px.Replace("(", "");
+                        string y = px.Replace("(", "");
+                        xL = Convert.ToInt32(x);
+                        yL = Convert.ToInt32(y);
 
-                        string x = building[3];
-
-                        foreach (string a in building)
+                        switch (type)
                         {
-                            lstBuildings.Items.Add(a);
+                            case "Shop":
+                                rating = Convert.ToDouble(building[2]);
+                                Shop sBuild = new Shop(name, xL, yL, type, Color.Black, rating);
+                                myModel.AddBuilding(sBuild);
+                                break;
+
+                            case "Mall":
+                                capacity = Convert.ToInt32(building[2]);
+                                Mall mBuild = new Mall(name, xL, yL, type, Color.Black, capacity);
+                                myModel.AddBuilding(mBuild);
+                                break;
+
+                            case "Train Station":
+                                line = building[2];
+                                TrainStation tsBuild = new TrainStation(name, xL, yL, type, Color.Black, line);
+                                myModel.AddBuilding(tsBuild);
+                                break;
                         }
-
-                        //switch (type)
-                        //{
-                        //    case "Shop":
-                        //        rating = Convert.ToDouble(building[2]);
-                        //        Shop sBuild = new Shop(name, xL, yL, type, Color.Black, rating);
-                        //        myModel.AddBuilding(sBuild);
-                        //        break;
-
-                        //    case "Mall":
-                        //        capacity = Convert.ToInt32(building[2]);
-                        //        Mall mBuild = new Mall(name, xL, yL, type, Color.Black, capacity);
-                        //        myModel.AddBuilding(mBuild);
-                        //        break;
-
-                        //    case "Train Station":
-                        //        line = building[2];
-                        //        TrainStation tsBuild = new TrainStation(name, xL, yL, type, Color.Black, line);
-                        //        myModel.AddBuilding(tsBuild);
-                        //        break;
-                        //}
                     }
                 }
                 this.Invalidate();

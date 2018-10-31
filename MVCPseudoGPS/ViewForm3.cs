@@ -77,6 +77,81 @@ namespace MVCPseudoGPS
 
         private void ctxLoad_Click(object sender, EventArgs e)
         {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string name, type, line;
+                int xL, yL, capacity;
+                double rating;
+
+                // create arrayList from model and convert to array of shapes
+                ArrayList theBuildingList = myModel.BuildingList;
+                Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+
+                // Ask to Save First
+                if (theBuildingList.Count > 0)
+                {
+                    DialogResult res = MessageBox.Show("There are existing Buildings, Saving is reccomened otherwise data will be lost.", "Warning: Loss of Data", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    if (res == DialogResult.OK)
+                    {
+                        saveToolStripMenuItem.PerformClick();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Your Data was not saved.", "Data not Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                // clear listbox
+                clearPanel();
+
+                // draw all shapes in array
+                foreach (Base b in theBuildings)
+                {
+                    theBuildingList.Remove(b);
+                }
+
+                //load data
+                StreamReader sr = new StreamReader(openFileDialog.FileName);
+                string theObjects = sr.ReadToEnd();
+                sr.Close();
+                string[] theLines = theObjects.Split('#');
+                foreach (string sO in theLines)
+                {
+                    if (sO != "")
+                    {
+                        string[] building = sO.Split(',');
+                        type = building[0];
+                        name = building[1];
+                        string px = building[3];
+                        string py = building[4];
+                        string x = px.Replace("(", "");
+                        string y = px.Replace("(", "");
+                        xL = Convert.ToInt32(x);
+                        yL = Convert.ToInt32(y);
+
+                        switch (type)
+                        {
+                            case "Shop":
+                                rating = Convert.ToDouble(building[2]);
+                                Shop sBuild = new Shop(name, xL, yL, type, Color.Black, rating);
+                                myModel.AddBuilding(sBuild);
+                                break;
+
+                            case "Mall":
+                                capacity = Convert.ToInt32(building[2]);
+                                Mall mBuild = new Mall(name, xL, yL, type, Color.Black, capacity);
+                                myModel.AddBuilding(mBuild);
+                                break;
+
+                            case "Train Station":
+                                line = building[2];
+                                TrainStation tsBuild = new TrainStation(name, xL, yL, type, Color.Black, line);
+                                myModel.AddBuilding(tsBuild);
+                                break;
+                        }
+                    }
+                }
+                this.Invalidate();
+            }
         }
 
         private void ctxClose_Click(object sender, EventArgs e)
