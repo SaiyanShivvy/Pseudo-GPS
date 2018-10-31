@@ -63,7 +63,7 @@
             this.gBControl.Controls.Add(this.lblY);
             this.gBControl.Controls.Add(this.txtX);
             this.gBControl.Controls.Add(this.lblX);
-            this.gBControl.Location = new System.Drawing.Point(540, 220);
+            this.gBControl.Location = new System.Drawing.Point(538, 209);
             this.gBControl.Name = "gBControl";
             this.gBControl.Size = new System.Drawing.Size(248, 189);
             this.gBControl.TabIndex = 35;
@@ -187,7 +187,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(632, 415);
+            this.btnUpdate.Location = new System.Drawing.Point(630, 404);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 33;
@@ -196,7 +196,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(713, 415);
+            this.btnAdd.Location = new System.Drawing.Point(711, 404);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 32;
@@ -209,14 +209,14 @@
             this.pnlDraw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlDraw.Location = new System.Drawing.Point(12, 12);
             this.pnlDraw.Name = "pnlDraw";
-            this.pnlDraw.Size = new System.Drawing.Size(522, 426);
+            this.pnlDraw.Size = new System.Drawing.Size(520, 420);
             this.pnlDraw.TabIndex = 36;
             // 
             // ViewForm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 444);
             this.Controls.Add(this.pnlDraw);
             this.Controls.Add(this.gBControl);
             this.Controls.Add(this.btnUpdate);

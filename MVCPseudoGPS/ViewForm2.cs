@@ -57,7 +57,17 @@ namespace MVCPseudoGPS
 
         public void RefreshView()
         {
-            throw new NotImplementedException();
+            // clear panel
+            clearPanel();
+            // create arrayList from model and convert to array of shapes
+            ArrayList theBuildingList = myModel.BuildingList;
+            Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+            Graphics g = this.pnlDraw.CreateGraphics();
+            // draw all shapes in array
+            foreach (Base b in theBuildings)
+            {
+                b.Display(g);
+            }
         }
     }
 }

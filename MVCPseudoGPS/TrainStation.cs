@@ -9,9 +9,9 @@ namespace MVCPseudoGPS
 {
     internal class TrainStation : Base
     {
-        public string Line { get; }
+        public string Line { get; set; }
 
-        public TrainStation(string building, int x_at, int y_at, Color bkColor, string line) : base(building, x_at, y_at, bkColor)
+        public TrainStation(string name, int x_at, int y_at, string type, Color bkColor, string line) : base(name, x_at, y_at, type, bkColor)
         {
             Line = line;
         }
@@ -19,7 +19,7 @@ namespace MVCPseudoGPS
         // override method to display shape as text
         public override string ToString()
         {
-            return "Train Station: " + this.buildingName + ", " + this.Line + ", " + this.Position();
+            return this.bType + ": " + this.buildingName + ", " + this.Line + ", " + this.Position();
         }
 
         // override method to display shape as graphics
@@ -32,7 +32,7 @@ namespace MVCPseudoGPS
             }
         }
 
-        public override int x_pos //non abstract property
+        public override int X_pos //non abstract property
         {
             get
             {
@@ -44,7 +44,7 @@ namespace MVCPseudoGPS
             }
         }
 
-        public override int y_pos //non abstract property
+        public override int Y_pos //non abstract property
         {
             get
             {
@@ -56,7 +56,7 @@ namespace MVCPseudoGPS
             }
         }
 
-        public override Color color //non abstract property
+        public override Color Color //non abstract property
         {
             get
             {
@@ -68,7 +68,7 @@ namespace MVCPseudoGPS
             }
         }
 
-        public override string name
+        public override string Name
         {
             get
             {
@@ -77,6 +77,18 @@ namespace MVCPseudoGPS
             set
             {
                 buildingName = value;
+            }
+        }
+
+        public override string Type
+        {
+            get
+            {
+                return bType;
+            }
+            set
+            {
+                bType = value;
             }
         }
     }

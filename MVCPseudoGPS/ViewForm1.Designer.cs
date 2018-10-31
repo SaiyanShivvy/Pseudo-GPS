@@ -94,6 +94,7 @@
             this.lstBuildings.Name = "lstBuildings";
             this.lstBuildings.Size = new System.Drawing.Size(261, 420);
             this.lstBuildings.TabIndex = 28;
+            this.lstBuildings.SelectedIndexChanged += new System.EventHandler(this.lstBuildings_SelectedIndexChanged);
             // 
             // btnUpdate
             // 

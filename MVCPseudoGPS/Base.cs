@@ -13,14 +13,16 @@ namespace MVCPseudoGPS
         protected int x;
         protected int y;
         protected Color bColor;
+        protected string bType;
 
         // constructor
-        public Base(string building, int x_at, int y_at, Color bkColor)
+        public Base(string name, int x_at, int y_at, string type, Color bkColor)
         {
-            buildingName = building;
+            buildingName = name;
             x = x_at;
             y = y_at;
             bColor = bkColor;
+            bType = type;
         }
 
         public abstract void Display(Graphics g);
@@ -30,25 +32,31 @@ namespace MVCPseudoGPS
             return "(" + x.ToString() + "," + y.ToString() + ")";
         }
 
-        public abstract int x_pos //abstract property
+        public abstract int X_pos //abstract property
         {
             get;
             set;
         }
 
-        public abstract int y_pos //abstract property
+        public abstract int Y_pos //abstract property
         {
             get;
             set;
         }
 
-        public abstract Color color //abstract property
+        public abstract Color Color //abstract property
         {
             get;
             set;
         }
 
-        public abstract string name //abstract property
+        public abstract string Name //abstract property
+        {
+            get;
+            set;
+        }
+
+        public abstract string Type //abstract property
         {
             get;
             set;

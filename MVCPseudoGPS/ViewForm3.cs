@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,9 +33,56 @@ namespace MVCPseudoGPS
             InitializeComponent();
         }
 
+        /// <summary>method: clearPanel
+        /// clear all shapes from display on panel
+        /// </summary>
+        private void clearPanel()
+        {
+            pnlDraw.CreateGraphics().Clear(pnlDraw.BackColor);
+        }
+
+        /// <summary>method: reDisplay
+        /// redraws all the shapes in the model
+        /// </summary>
+        public void reDisplay()
+        {
+            ArrayList theBuildingList = myModel.BuildingList;
+            Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+            Graphics g = this.pnlDraw.CreateGraphics();
+            foreach (Base b in theBuildings)
+            {
+                b.Display(g);
+            }
+        }
+
         public void RefreshView()
         {
-            throw new NotImplementedException();
+            // clear panel
+            clearPanel();
+            // create arrayList from model and convert to array of shapes
+            ArrayList theBuildingList = myModel.BuildingList;
+            Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+            Graphics g = this.pnlDraw.CreateGraphics();
+            // draw all shapes in array
+            foreach (Base b in theBuildings)
+            {
+                b.Display(g);
+            }
+        }
+
+        public void DisplayType()
+        {
+            // clear panel
+            clearPanel();
+            // create arrayList from model and convert to array of shapes
+            ArrayList theBuildingList = myModel.BuildingList;
+            Base[] theBuildings = (Base[])theBuildingList.ToArray(typeof(Base));
+            Graphics g = this.pnlDraw.CreateGraphics();
+            // draw all shapes in array
+            foreach (Base b in theBuildings)
+            {
+                b.Display(g);
+            }
         }
     }
 }
