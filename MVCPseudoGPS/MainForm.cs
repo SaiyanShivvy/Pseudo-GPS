@@ -51,16 +51,19 @@ namespace MVCPseudoGPS
 
         private void btnVF1_Click(object sender, EventArgs e)
         {
+            viewSetup();
             viewForm1.Show();
         }
 
         private void btnVF2_Click(object sender, EventArgs e)
         {
+            viewSetup();
             viewForm2.Show();
         }
 
         private void btnVF3_Click(object sender, EventArgs e)
         {
+            viewSetup();
             viewForm3.Show();
         }
 

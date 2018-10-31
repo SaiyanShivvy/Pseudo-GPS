@@ -138,13 +138,13 @@ namespace MVCPseudoGPS
 
                             case "Mall":
                                 capacity = Convert.ToInt32(building[2]);
-                                Mall mBuild = new Mall(name, xL, yL, type, Color.Black, capacity);
+                                Mall mBuild = new Mall(name, xL, yL, type, Color.Red, capacity);
                                 myModel.AddBuilding(mBuild);
                                 break;
 
                             case "Train Station":
                                 line = building[2];
-                                TrainStation tsBuild = new TrainStation(name, xL, yL, type, Color.Black, line);
+                                TrainStation tsBuild = new TrainStation(name, xL, yL, type, Color.Blue, line);
                                 myModel.AddBuilding(tsBuild);
                                 break;
                         }
