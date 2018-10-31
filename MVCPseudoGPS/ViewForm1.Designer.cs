@@ -68,6 +68,7 @@
             this.txtX.Size = new System.Drawing.Size(69, 20);
             this.txtX.TabIndex = 24;
             this.toolTipVF1.SetToolTip(this.txtX, "Maximum Value is 560.");
+            this.txtX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_KeyPress);
             // 
             // lblX
             // 
@@ -235,6 +236,7 @@
             this.txtY.Size = new System.Drawing.Size(69, 20);
             this.txtY.TabIndex = 26;
             this.toolTipVF1.SetToolTip(this.txtY, "Maximum Value is 425.");
+            this.txtY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_KeyPress);
             // 
             // ViewForm1
             // 

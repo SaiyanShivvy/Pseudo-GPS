@@ -33,13 +33,10 @@ namespace MVCPseudoGPS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // required var's
             int X, Y;
             string name;
             Color aColor;
             Base aBuilding;
-            aColor = Color.Black;
-
             try
             {
                 X = Convert.ToInt32(txtX.Text);
@@ -49,6 +46,7 @@ namespace MVCPseudoGPS
                 {
                     string type = "Shop";
                     double rating = Convert.ToDouble(txtValue.Text);
+                    aColor = Color.Black;
                     aBuilding = new Shop(name, X, Y, type, aColor, rating);
                     myModel.AddBuilding(aBuilding);
                 }
@@ -56,6 +54,7 @@ namespace MVCPseudoGPS
                 {
                     string type = "Mall";
                     int capacity = Convert.ToInt32(txtValue.Text);
+                    aColor = Color.Red;
                     aBuilding = new Mall(name, X, Y, type, aColor, capacity);
                     myModel.AddBuilding(aBuilding);
                 }
@@ -63,6 +62,7 @@ namespace MVCPseudoGPS
                 {
                     string type = "Train Station";
                     string line = txtValue.Text;
+                    aColor = Color.Blue;
                     aBuilding = new TrainStation(name, X, Y, type, aColor, line);
                     myModel.AddBuilding(aBuilding);
                 }
@@ -205,6 +205,31 @@ namespace MVCPseudoGPS
                 rbMall.Checked = false;
                 rbShop.Checked = false;
             }
+        }
+
+        /// <summary>method: CheckForNumeric
+        /// check for only numbers and backspace key
+        /// </summary>
+        /// <param name="ch"></param>
+        /// <returns></returns>
+        private static bool CheckForNumeric(char ch)
+        {
+            int keyInt = (int)ch;
+            if ((keyInt < 48 || keyInt > 57) && keyInt != 8)
+                return false;
+            else
+                return true;
+        }
+
+        /// <summary> method: txtXpos_KeyPress
+        /// allow only numbers and backspace key
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (CheckForNumeric(e.KeyChar) == false)
+                e.Handled = true;
         }
 
         public void RefreshView()
