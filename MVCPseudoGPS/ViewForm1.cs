@@ -65,32 +65,46 @@ namespace MVCPseudoGPS
                     name = txtName.Text;
                     if (rbShop.Checked)
                     {
-                        string type = "Shop";
-                        double rating = Convert.ToDouble(txtValue.Text);
-                        aColor = Color.Black;
-                        if (rating > 10.0 || rating < 0.0)
+                        if (!Double.TryParse(txtValue.Text, out double parse))
                         {
-                            MessageBox.Show("Rating must be between 0.0 - 10.0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Rating is limited to Double value's only", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         else
                         {
-                            aBuilding = new Shop(name, X, Y, type, aColor, rating);
-                            myModel.AddBuilding(aBuilding);
+                            string type = "Shop";
+                            double rating = Convert.ToDouble(txtValue.Text);
+                            aColor = Color.Black;
+                            if (rating > 10.0 || rating < 0.0)
+                            {
+                                MessageBox.Show("Rating must be between 0.0 - 10.0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                aBuilding = new Shop(name, X, Y, type, aColor, rating);
+                                myModel.AddBuilding(aBuilding);
+                            }
                         }
                     }
                     else if (rbMall.Checked)
                     {
-                        string type = "Mall";
-                        int capacity = Convert.ToInt32(txtValue.Text);
-                        aColor = Color.Red;
-                        if (capacity < 0)
+                        if (!int.TryParse(txtValue.Text, out int parse))
                         {
-                            MessageBox.Show("Capacity cannot be less than 0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Capacity is limited to Integer's only", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         else
                         {
-                            aBuilding = new Mall(name, X, Y, type, aColor, capacity);
-                            myModel.AddBuilding(aBuilding);
+                            string type = "Mall";
+                            int capacity = Convert.ToInt32(txtValue.Text);
+                            aColor = Color.Red;
+                            if (capacity < 0)
+                            {
+                                MessageBox.Show("Capacity cannot be less than 0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                aBuilding = new Mall(name, X, Y, type, aColor, capacity);
+                                myModel.AddBuilding(aBuilding);
+                            }
                         }
                     }
                     else if (rbTrainStation.Checked)
@@ -125,28 +139,42 @@ namespace MVCPseudoGPS
                 Base selectedBuilding = (MVCPseudoGPS.Base)lstBuildings.SelectedItem;
                 if (selectedBuilding.Type == "Shop")
                 {
-                    double nRating = Convert.ToDouble(txtValue.Text);
-                    Shop sB = (MVCPseudoGPS.Shop)lstBuildings.SelectedItem;
-                    if (nRating > 10.0 || nRating < 0.0)
+                    if (!Double.TryParse(txtValue.Text, out double parse))
                     {
-                        MessageBox.Show("Rating must be between 0.0 - 10.0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Rating is limited to Double value's only", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
-                        sB.Rating = nRating;
+                        double nRating = Convert.ToDouble(txtValue.Text);
+                        Shop sB = (MVCPseudoGPS.Shop)lstBuildings.SelectedItem;
+                        if (nRating > 10.0 || nRating < 0.0)
+                        {
+                            MessageBox.Show("Rating must be between 0.0 - 10.0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            sB.Rating = nRating;
+                        }
                     }
                 }
                 else if (selectedBuilding.Type == "Mall")
                 {
-                    int nCapacity = Convert.ToInt32(txtValue.Text);
-                    Mall sB = (MVCPseudoGPS.Mall)lstBuildings.SelectedItem;
-                    if (nCapacity < 0)
+                    if (!int.TryParse(txtValue.Text, out int parse))
                     {
-                        MessageBox.Show("Capacity cannot be less than 0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Capacity is limited to Integer's only", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
-                        sB.Capacity = nCapacity;
+                        int nCapacity = Convert.ToInt32(txtValue.Text);
+                        Mall sB = (MVCPseudoGPS.Mall)lstBuildings.SelectedItem;
+                        if (nCapacity < 0)
+                        {
+                            MessageBox.Show("Capacity cannot be less than 0", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            sB.Capacity = nCapacity;
+                        }
                     }
                 }
                 else if (selectedBuilding.Type == "Train Station")
