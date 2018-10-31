@@ -41,10 +41,9 @@ namespace MVCPseudoGPS
         {
             if (selectBuilding != null)
             {
-                edit(true);
+                edit();
                 dragging = true;
             }
-            edit(false);
         }
 
         private void pnlDraw_MouseMove(object sender, MouseEventArgs e)
@@ -108,14 +107,14 @@ namespace MVCPseudoGPS
                 // reset position of selected shape by value of mouse move
                 selectBuilding.X_pos = selectBuilding.X_pos + xMove;
                 selectBuilding.Y_pos = selectBuilding.Y_pos + yMove;
-
+                edit();
                 myModel.UpdateViews();
             }
         }
 
         private void pnlDraw_MouseUp(object sender, MouseEventArgs e)
         {
-            edit(false);
+            edit();
             dragging = false;
             clearPanel();
             // create arrayList of shapes from model and convert to array of shapes
@@ -131,43 +130,43 @@ namespace MVCPseudoGPS
             myModel.UpdateViews();
         }
 
-        private void edit(bool isEditing)
+        private void edit()
         {
-            if (isEditing)
+            if (selectBuilding != null)
             {
-                if (selectBuilding != null)
+                editBuilding = selectBuilding;
+
+                txtName.Text = selectBuilding.Name;
+                txtX.Text = selectBuilding.X_pos.ToString();
+                txtY.Text = selectBuilding.Y_pos.ToString();
+                switch (selectBuilding.Type)
                 {
-                    editBuilding = selectBuilding;
+                    case "Shop":
+                        rbShop.Checked = true;
+                        rbMall.Checked = false;
+                        rbTrainStation.Checked = false;
+                        Shop sp = (MVCPseudoGPS.Shop)selectBuilding;
+                        lblCusVal.Text = "Rating";
+                        txtValue.Text = sp.Rating.ToString();
+                        break;
 
-                    txtName.Text = selectBuilding.Name;
-                    txtX.Text = selectBuilding.X_pos.ToString();
-                    txtY.Text = selectBuilding.Y_pos.ToString();
-                    switch (selectBuilding.Type)
-                    {
-                        case "Shop":
-                            rbShop.Checked = true;
-                            rbMall.Checked = false;
-                            rbTrainStation.Checked = false;
-                            Shop sp = (MVCPseudoGPS.Shop)selectBuilding;
-                            txtValue.Text = sp.Rating.ToString();
-                            break;
+                    case "Mall":
+                        rbShop.Checked = false;
+                        rbMall.Checked = true;
+                        rbTrainStation.Checked = false;
+                        Mall ml = (MVCPseudoGPS.Mall)selectBuilding;
+                        lblCusVal.Text = "Capacity";
+                        txtValue.Text = ml.Capacity.ToString();
+                        break;
 
-                        case "Mall":
-                            rbShop.Checked = false;
-                            rbMall.Checked = true;
-                            rbTrainStation.Checked = false;
-                            Mall ml = (MVCPseudoGPS.Mall)selectBuilding;
-                            txtValue.Text = ml.Capacity.ToString();
-                            break;
-
-                        case "Train Station":
-                            rbShop.Checked = false;
-                            rbMall.Checked = false;
-                            rbTrainStation.Checked = true;
-                            TrainStation ts = (MVCPseudoGPS.TrainStation)selectBuilding;
-                            txtValue.Text = ts.Line;
-                            break;
-                    }
+                    case "Train Station":
+                        rbShop.Checked = false;
+                        rbMall.Checked = false;
+                        rbTrainStation.Checked = true;
+                        TrainStation ts = (MVCPseudoGPS.TrainStation)selectBuilding;
+                        lblCusVal.Text = "Line";
+                        txtValue.Text = ts.Line;
+                        break;
                 }
             }
         }
@@ -214,28 +213,24 @@ namespace MVCPseudoGPS
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //if (lstBuildings.SelectedItem != null)
-            //{
-            //    DialogResult dialogResult = MessageBox.Show("Do you want to delete selected shape?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            //    if (dialogResult == DialogResult.Yes)
-            //    {
-            //        Base selectedBuilding = (MVCPseudoGPS.Base)lstBuildings.SelectedItem;
-            //        myModel.DeleteBuilding(selectedBuilding);
-            //        //if (myModel.BuildingList.Count < 1)
-            //        //{
-            //        //    MessageBox.Show("Building's List is now Empty", "No Building's Left!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        //}
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("No Changes have been made.", "Action Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Please chose a Building from the ListBox", "No Building Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-            //myModel.UpdateViews();
+            if (selectBuilding != null)
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to delete selected shape?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Base selectedBuilding = (MVCPseudoGPS.Base)selectBuilding;
+                    myModel.DeleteBuilding(selectedBuilding);
+                }
+                else
+                {
+                    MessageBox.Show("No Changes have been made.", "Action Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please chose a Building from the ListBox", "No Building Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            myModel.UpdateViews();
         }
 
         /// <summary>method: clearPanel
