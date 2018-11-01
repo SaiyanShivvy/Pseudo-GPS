@@ -15,7 +15,7 @@ namespace MVCPseudoGPS
     /// <summary>
     /// Date: 1/11/18
     /// Author: Shivneel Achari
-    /// Note: The Section above applies for all the following comments on this class
+    /// Note: The Section above applies for all the following comments on this class, I also ran out of time to completely comment all code.
     /// Purpose: This class is meant to act as a menu and allow the user to open ViewForms
     /// </summary>
     public partial class MainForm : Form
